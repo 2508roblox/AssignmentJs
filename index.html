@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Document</title>
+  <script src="https://kit.fontawesome.com/38dc947407.js" defer crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="./css/style.css" />
+  <!-- Map -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css"
+    integrity="sha256-kLaT2GOSpHechhsozzB+flnD+zUyjE2LlfWPgU04xyI=" crossorigin="" defer />
+  <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"
+    integrity="sha256-WBkoXOwTeyKclOHuWtc+i2uENFpDZ9YPdf5Hf+D7ewM=" crossorigin="" defer></script>
+  <script src="./js/scripts.js" defer></script>
+  <!-- map  -->
+  <!-- scroll  -->
+
+
+  <!-- scroll div  -->
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+
+
+  <!-- Firebase App (the core Firebase SDK) is always required and should be listed first -->
+  <script src="https://www.gstatic.com/firebasejs/8.3.3/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.3.3/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.3.3/firebase-firestore.js"></script>
+
+
+
+
+
+
+
+  <script>
+    const firebaseConfig = {
+      apiKey: "AIzaSyCYNRPbExvBTnCTcNHiz4kjoof8cnluto4",
+      authDomain: "assignment-6a8c4.firebaseapp.com",
+      databaseURL: "https://assignment-6a8c4-default-rtdb.firebaseio.com",
+      projectId: "assignment-6a8c4",
+      storageBucket: "assignment-6a8c4.appspot.com",
+      messagingSenderId: "93701636380",
+      appId: "1:93701636380:web:51b58c886a47a326593ad9"
+    };
+
+
+
+    firebase.initializeApp(firebaseConfig);
+    let provider = new firebase.auth.GoogleAuthProvider()
+    function signInWithGoogle() {
+      console.log('Login Btn Call')
+      firebase.auth().signInWithPopup(provider).then(res => {
+        console.log(res.user)
+
+        showUserDetails(res.user)
+      }).catch(e => {
+        console.log(e)
+      })
+    }
+
+    // Listen for changes to the user's sign-in state
+    firebase.auth().onAuthStateChanged((user) => {
+      if (user) {
+        document.querySelector('.userProfile img').setAttribute('src', user.photoURL)
+        document.querySelector('.userProfile p').innerHTML = user.displayName
+        // User is signed in, do something
+        console.log("User is signed in:", user);
+      } else {
+        // User is signed out, do something else
+        console.log("User is signed out");
+      }
+    });
+  </script>
+
+  <style>
+    .userProfile {
+      display: flex;
+      align-items: center;
+      font-size: .5rem;
+    }
+
+    .userProfile img {
+      width: 50px;
+      height: 50px;
+      border-radius: 100%;
+
+    }
+
+    .nav {
+      width: 670px;
+    }
+
+    .nav-2 {
+      margin-top: 4.7rem;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="header" id="goback">
+    <div class="logo" data-aos="fade-right">
+      <p>NIKE</p>
+    </div>
+    <div class="nav">
+      <p>Trang Chủ</p>
+      <p><a href="./test.html">Sản Phẩm</a> </p>
+      <div class="nav-2">
+        <p>Giỏ hàng</p>
+        <p>Tài khoản</p>
+        <p><a href="./signPage.html">Đăng xuất</a></p>
+        <p>Liên hệ</p>
+
+      </div>
+
+      <p><a href="./news.html">Tin Tức</a></p>
+      <p><a href="./location.html">Vị trí</a></p>
+      <img width="60px" src="./assets/images/google.png" onclick="signInWithGoogle()"></img>
+      <div class="userProfile">
+        <img src="" alt="">
+        <p></p>
+      </div>
+    </div>
+  </div>
+  <div class="home">
+    <div class="left-content" data-aos="fade-right" data-aos-offset="600" data-aos-easing="ease-in-sine">
+      <video class="home-img" autoplay loop muted src="./assets/videos/home-750-right.mp4"></video>
+    </div>
+    <div class="right-content" data-aos="fade-down" data-aos-easing="linear" data-aos-duration="2000">
+      <div class="home-r-top-video">
+        <video data-aos="fade-down" data-aos-easing="linear" data-aos-duration="1500" autoplay loop muted
+          src="./assets/videos/home-full-right.mp4"></video>
+      </div>
+      <div class="right-title">
+        <p data-aos="fade-down" data-aos-easing="linear" data-aos-duration="1500">
+          Bold, Daring, Different Footwear.
+        </p>
+        <h1 data-aos="fade-right" data-aos-duration="1500">
+          Static<span>700</span>
+        </h1>
+        <button data-aos="fade-down">
+          <i class="fa-sharp fa-solid fa-download"></i>
+          <p>Khám Phá</p>
+        </button>
+      </div>
+    </div>
+  </div>
+  <div class="container1" data-aos="fade-up" data-aos-duration="2000">
+    <div class="img" data-aos="fade-right" data-aos-offset="100" data-aos-duration="2000"
+      data-aos-easing="ease-in-sine">
+      <img src="./assets/images/c1-left.png" alt="" />
+    </div>
+    <div class="c1-contents">
+      <p data-aos="fade-right" data-aos-offset="100" data-aos-duration="1000" data-aos-easing="ease-in-sine">
+        In an Ordinary World,
+      </p>
+      <h1 data-aos="fade-right" data-aos-offset="100" data-aos-duration="1000" data-aos-easing="ease-in-sine">
+        BE EXTRA-<br />
+        ORDINARY
+      </h1>
+      <p data-aos="zoom-in-left" data-aos-duration="2000" data-aos-offset="100">
+        I'm a paragraph. Click here to add your own text and edit me. It’s
+        easy. Just click “Edit Text” or double click me to add your own
+        content and make changes to the font.
+      </p>
+      <div>
+        <button data-aos="zoom-in-left" data-aos-duration="1000">
+          <i class="fa-sharp fa-solid fa-download"></i>
+
+          <p>Explore</p>
+        </button>
+        <img data-aos="zoom-in-left" data-aos-offset="100" data-aos-duration="2500" src="./assets/images/c1-right.png"
+          alt="" />
+      </div>
+    </div>
+  </div>
+
+
+  <div class="container4" data-aos="fade-up" data-aos-anchor-placement="center-bottom">
+    <div class="c4-contents" data-aos="fade-right" data-aos-offset="50" data-aos-easing="ease-in-sine"
+      data-aos-duration="1200">
+      <p>Get the Limited Edition</p>
+      <h1 data-aos="fade-right" data-aos-offset="50" data-aos-easing="ease-in-sine" data-aos-duration="1000">
+        COMING SOON
+      </h1>
+      <button data-aos="fade-right" data-aos-offset="50" data-aos-easing="ease-in-sine" data-aos-duration="1400">
+        <i class="fa-sharp fa-solid fa-download"></i>
+
+        <p>Explore</p>
+      </button>
+    </div>
+    <div class="c4-thumbail" data-aos="fade-left" data-aos-offset="50" data-aos-easing="ease-in-sine"
+      data-aos-duration="1400">
+      <img src="./assets/images/c4-thumbail.png" alt="" />
+    </div>
+  </div>
+  <div class="mapst" data-aos="fade-up" data-aos-anchor-placement="center-bottom"></div>
+  <div class="container5" data-aos="fade-up" data-aos-anchor-placement="center-bottom">
+    <p>Become an Insider.</p>
+    <h1>Be the First to Know When Static 700 Arrives.</h1>
+    <input type="text" placeholder="Email" />
+    <button>Sign Up</button>
+    <div class="c5-cocial">
+      <p>Connect to NIKE.</p>
+      <div class="c5-link" data-aos="fade-up" data-aos-offset="50" data-aos-easing="ease-in-sine"
+        data-aos-duration="1300">
+        <a href="">INSTAGRAM</a>
+        <a href="">FACEBOOK</a>
+        <a href="">TWITTER</a>
+      </div>
+    </div>
+  </div>
+
+  <video width="100%" style="margin-bottom: 10rem;" autoplay loop muted
+    src="/assets/videos/y2meta.com-Nike Air Max 97 - Evolution (Animation)-(1080p) - Copy.mp4"></video>
+
+
+
+  <footer class="site-footer">
+    <div class="container" class="row">
+      <div class="col-sm-12 col-md-6">
+        <h6>About</h6>
+        <p style="max-width: 500px;" class="text-justify">Lorem, ipsum dolor sit amet consectetur adipisicing elit.
+          Consequuntur voluptates
+          necessitatibus illo vitae officia libero cum excepturi, eos doloremque ipsa perspiciatis asperiores optio
+          fugiat provident expedita, cupiditate dignissimos recusandae perferendis accusantium. Voluptatum dignissimos
+          nesciunt quibusdam officiis voluptas ea? Vero magni itaque voluptatem doloribus asperiores dolorum quod,
+          autem nostrum ullam eveniet ratione fugiat eaque deserunt, quidem ipsam error. Corporis est atque ut ab
+          facilis vel, officiis quaerat dolores illo a, expedita repellat ipsam eum suscipit doloremque, obcaecati
+          maxime nihil fuga itaque consequuntur ipsa consectetur. Cum, amet fugiat. Cumque totam dolores quibusdam
+          vero odit, laborum omnis ex voluptates quae reiciendis vitae maxime.</p>
+      </div>
+
+      <div class="col-xs-6 col-md-3">
+        <h6>Categories</h6>
+        <ul class="footer-links">
+          <li><a href="http://scanfcode.com/category/c-language/">C</a></li>
+          <li><a href="http://scanfcode.com/category/front-end-development/">Shoes</a></li>
+          <li><a href="http://scanfcode.com/category/back-end-development/">Sneaker</a></li>
+          <li><a href="http://scanfcode.com/category/java-programming-language/">clothes</a></li>
+          <li><a href="http://scanfcode.com/category/android/">hats</a></li>
+          <li><a href="http://scanfcode.com/category/templates/">Others</a></li>
+        </ul>
+      </div>
+
+      <div class="col-xs-6 col-md-3">
+        <h6>Quick Links</h6>
+        <ul class="footer-links">
+          <li><a href="http://scanfcode.com/about/">About Us</a></li>
+          <li><a href="http://scanfcode.com/contact/">Contact Us</a></li>
+          <li><a href="http://scanfcode.com/contribute-at-scanfcode/">Contribute</a></li>
+          <li><a href="http://scanfcode.com/privacy-policy/">Privacy Policy</a></li>
+          <li><a href="http://scanfcode.com/sitemap/">Sitemap</a></li>
+        </ul>
+      </div>
+      </>
+      <hr>
+    </div>
+    <div class="container ft-ct">
+      <div class="row">
+        <div class="col-md-8 col-sm-6 col-xs-12">
+          <p class="copyright-text">Copyright &copy; 2017 All Rights Reserved by
+            <a href="#">Scanfcode</a>.
+          </p>
+        </div>
+
+        <div class="col-md-4 col-sm-6 col-xs-12">
+          <ul class="social-icons">
+            <li><a class="facebook" href="#"><i class="fa fa-facebook"></i></a></li>
+            <li><a class="twitter" href="#"><i class="fa fa-twitter"></i></a></li>
+            <li><a class="dribbble" href="#"><i class="fa fa-dribbble"></i></a></li>
+            <li><a class="linkedin" href="#"><i class="fa fa-linkedin"></i></a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="go-back">
+      <a href="#goback">^</a>
+    </div>
+  </footer>
+
+
+  <!-- The core Firebase JS SDK is always required and must be listed first -->
+
+
+
+  <!-- Start of ChatBot (www.chatbot.com) code -->
+  <script type="text/javascript">
+    window.__be = window.__be || {};
+    window.__be.id = "63f450ef14351500089a597b";
+    (function () {
+      var be = document.createElement('script'); be.type = 'text/javascript'; be.async = true;
+      be.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'cdn.chatbot.com/widget/plugin.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(be, s);
+    })();
+  </script>
+  <!-- End of ChatBot code -->
+  <script>
+    AOS.init();
+
+
+  </script>
+</body>
+
+</html>
